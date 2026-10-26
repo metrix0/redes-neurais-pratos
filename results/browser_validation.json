@@ -1,0 +1,1 @@
+{"mae":4.687796107462165,"n":331,"test_evaluated":false,"calibration":"first 32 original training indices","format":"ONNX QDQ int8","backbone":"torchvision IMAGENET1K_V1"}
