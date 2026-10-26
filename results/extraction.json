@@ -1,0 +1,9 @@
+{
+  "extractor": "torchvision ResNet-18 IMAGENET1K_V1",
+  "dimensions": 512,
+  "seconds": 52.12752299500016,
+  "images": 1645,
+  "torch": "2.14.1+cpu",
+  "weights_url": "https://download.pytorch.org/models/resnet18-f37072fd.pth",
+  "transforms": "ImageClassification(\n    crop_size=[224]\n    resize_size=[256]\n    mean=[0.485, 0.456, 0.406]\n    std=[0.229, 0.224, 0.225]\n    interpolation=InterpolationMode.BILINEAR\n)"
+}

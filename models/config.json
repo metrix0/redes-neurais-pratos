@@ -1,0 +1,11 @@
+{
+  "name": "resnet_ridge_log_1000",
+  "extractor": "resnet18",
+  "weights": "IMAGENET1K_V1",
+  "trained_parameters": "regression head only; backbone frozen",
+  "validation_mae": 4.762163083142744,
+  "currency": "USD",
+  "train_count": 1064,
+  "validation_count": 331,
+  "test_count": 250
+}

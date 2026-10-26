@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f3eb">
+<title>À mesa — Quanto vale uma foto?</title>
+<meta name="description" content="Uma fotografia, uma estimativa. Experimente um modelo de aprendizado de máquina que estima o preço de itens de cardápio.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header><a class="brand" href="./" aria-label="À mesa início"><span class="brand-icon">✳</span> à mesa<span class="brand-dot">.</span></a><span class="header-note">UM EXPERIMENTO DE MACHINE LEARNING</span><a class="about-link" href="#sobre">Por trás do prato <span>↗</span></a></header>
+<main>
+<section class="intro"><div class="eyebrow"><i></i> DA IMAGEM AO PREÇO</div><h1>Os olhos também<br> <em>escolhem o preço.</em></h1><p>Uma foto de comida. Um olhar da máquina.<br>Descubra o preço que o nosso modelo imagina.</p></section>
+<section class="workspace" aria-label="Estimativa de preço">
+<div class="photo-card" id="photo-card"><img id="dish-photo" src="./pasta.jpg" alt="Massa ao pesto com tomates em um prato" width="1200" height="900"><div class="photo-shade"></div><span class="photo-tag">SEU PRATO, SOB UM NOVO OLHAR</span><div class="photo-bottom"><div><span class="photo-kicker" id="photo-kicker">UM GOSTINHO DO EXPERIMENTO</span><h2 id="photo-name">O que uma foto<br>tem a dizer?</h2></div><span class="photo-circle" aria-hidden="true">↗</span></div><div class="scan-line"></div></div>
+<div class="control-card">
+<div class="step-label"><span>01 / EXPERIMENTE</span><span class="local-badge"><i></i> RESNET-18</span></div>
+<div id="upload-view"><h2>À mesa com<br>a sua foto.</h2><p class="control-copy">Envie a imagem de um prato e deixe o modelo<br class="desktop-break"> estimar seu preço de cardápio.</p>
+<label class="drop-zone" id="drop-zone" for="file-input"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4" y="5" width="24" height="22" rx="5" stroke="currentColor" stroke-width="1.4"/><path d="m5 22 7-7 6 6 4-4 5 5" stroke="currentColor" stroke-width="1.4"/><circle cx="22" cy="11" r="2" fill="currentColor"/></svg><strong>Solte uma foto aqui</strong><span>ou clique para escolher</span><small>JPG, PNG ou WEBP · até 10 MB</small></label>
+<input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" class="visually-hidden">
+<div class="or"><span></span> SÓ EXPLORANDO? <span></span></div>
+<button class="sample-button" id="sample-button"><img src="./pasta.jpg" alt="" width="48" height="48"><span>Experimente com esta massa<small>Use a foto ao lado como exemplo</small></span><span class="arrow">↗</span></button>
+</div>
+<div id="result-view" hidden><span class="result-overline">PREÇO ESTIMADO DE CARDÁPIO</span><div class="price"><span>US$</span><strong id="price">—</strong></div><div class="estimate-note"><span class="tiny-star">✳</span> Uma estimativa visual, em dólares.</div><div class="error-box"><span>Erro médio na validação</span><strong>US$ 4,76 <span>por item</span></strong><p>Algumas previsões ficam mais perto, outras mais longe. Este valor não é um intervalo garantido.</p></div><p class="result-context">O modelo usa características visuais da ResNet-18. Porção, restaurante e localização ainda podem alterar o preço.</p><button class="primary-button" id="reset-button">Experimentar outra foto <span>↗</span></button></div>
+<div class="status" id="status" role="status" aria-live="polite"><span class="status-dot"></span><span id="status-text">Sua foto é processada sem armazenamento.</span></div>
+</div>
+</section>
+<section class="proof-strip"><div><strong>1.645</strong><span>imagens reais</span></div><span class="proof-cross">+</span><div><strong>197</strong><span>restaurantes na base</span></div><span class="proof-cross">↗</span><div><strong>16,3<span>%</span></strong><span>menos erro que o Ridge anterior</span></div><span class="proof-cross">✳</span><p>Dados reais.<br><em>Curiosidade à vontade.</em></p></section>
+<section class="explanation" id="sobre"><div><div class="eyebrow">02 / POR TRÁS DO PRATO</div><h2>Um pequeno modelo.<br>Uma pergunta <em>interessante.</em></h2></div><div class="explanation-body"><p>Quanto do preço de um prato está na sua aparência? Este experimento usa 512 características de uma ResNet-18 pré-treinada e uma cabeça de regressão para investigar essa relação.</p><p>O regressor foi treinado com 1.064 imagens e avaliado em outras 331, separadas por restaurante. O erro médio foi de US$ 4,76, contra US$ 5,55 ao prever sempre a média do treino. Outras 250 imagens permanecem reservadas para o teste final.</p><p class="small-note">Os dados são de cardápios em dólares. A estimativa não representa preços no Brasil nem quanto uma pessoa pagaria. A melhora é preliminar e itens caros continuam sendo subestimados.</p><a href="https://github.com/metrix0/redes-neurais-pratos" class="download-link" target="_blank" rel="noopener">Explorar o código do experimento <span>↗</span></a></div></section>
+</main><footer><span class="footer-brand">à mesa.</span><span>João Vitor R. Almeida & Leonardo M. C. Prado</span><span>T2 · REDES NEURAIS · 2026</span></footer>
+<script type="module" src="./app.js"></script>
+</body></html>
