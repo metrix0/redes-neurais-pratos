@@ -1,0 +1,82 @@
+{
+  "source_commit": "c533ee940df07f04c626a87f0209a25525ef85d2",
+  "test_evaluated": true,
+  "test_count": 250,
+  "test_restaurants": 30,
+  "split_seed": 42,
+  "model_selection": "unchanged; saved models, no refit",
+  "sklearn": "1.8.0",
+  "bootstrap": {
+    "unit": "restaurant",
+    "replicates": 10000,
+    "seed": 2026
+  },
+  "model_sha256": {
+    "models\\color_baseline.joblib": "b09feecb6aa91681c5d20d49cbbd97707eb870ba449e7baa1e2d5ea61f08f918",
+    "models\\regressor.joblib": "6e0539fe066768b291f8dbbf97a6e652669b91da766b1e3106ea06a2286aa45f"
+  },
+  "test": {
+    "mean": {
+      "mae": 4.622158345864662,
+      "r2": -0.007226878770470124,
+      "mae_bootstrap_sd": 0.6210599016231454,
+      "mae_ci95": [
+        3.428056659376677,
+        5.82643342050199
+      ]
+    },
+    "median": {
+      "mae": 4.8041599999999995,
+      "r2": -0.2672921515488802,
+      "mae_bootstrap_sd": 0.8182611238765007,
+      "mae_ci95": [
+        3.1857712700622343,
+        6.345773671763125
+      ]
+    },
+    "color_ridge": {
+      "mae": 4.2737585068511965,
+      "r2": 0.08098269453574447,
+      "mae_bootstrap_sd": 0.4237095457792643,
+      "mae_ci95": [
+        3.5040746281870754,
+        5.171683291267171
+      ]
+    },
+    "resnet": {
+      "mae": 4.049168934288025,
+      "r2": 0.20670194967324163,
+      "mae_bootstrap_sd": 0.4122685193675835,
+      "mae_ci95": [
+        3.2032356407296767,
+        4.827859551116594
+      ]
+    }
+  },
+  "paired_differences": {
+    "mean": {
+      "mae_reduction": 0.5729894115766374,
+      "bootstrap_sd": 0.681668774328482,
+      "ci95": [
+        -0.8864859235793207,
+        1.6041823513789477
+      ]
+    },
+    "median": {
+      "mae_reduction": 0.7549910657119749,
+      "bootstrap_sd": 0.8024725660131801,
+      "ci95": [
+        -0.9366231726741141,
+        2.139078369306331
+      ]
+    },
+    "color_ridge": {
+      "mae_reduction": 0.2245895725631719,
+      "bootstrap_sd": 0.35472291223379615,
+      "ci95": [
+        -0.3682607859674848,
+        1.0184225767181654
+      ]
+    }
+  }
+}
