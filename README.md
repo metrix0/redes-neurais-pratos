@@ -114,7 +114,7 @@ Pré-processamento: RGB, menor lado redimensionado para 256, recorte central 224
 
 A configuração escolhida foi **StandardScaler → Ridge(alpha=1000)**, com alvo log(1 + preço) e transformação inversa expm1. O normalizador é ajustado somente no treino. Previsões negativas são limitadas a zero.
 
-Foram comparadas 16 configurações: Ridge com alvo original ou logarítmico, Extra Trees e vizinhos próximos. A escolha usou MAE médio em **GroupKFold de três partições dos restaurantes de treino**. A validação externa foi consultada depois da escolha. O diagnóstico do baseline já havia sido visto antes desta melhoria; estas medidas continuam exploratórias. O teste final permanece sem avaliação.
+Foram comparadas 16 configurações: Ridge com alvo original ou logarítmico, Extra Trees e vizinhos próximos. A escolha usou MAE médio em **GroupKFold de três partições dos restaurantes de treino**. A validação externa foi consultada depois da escolha. O diagnóstico do baseline já havia sido visto antes desta melhoria; estas medidas continuam exploratórias. O teste final foi avaliado uma única vez após congelar a configuração; consulte a seção abaixo.
 
 | Configuração | MAE na validação cruzada do treino |
 | --- | ---: |
@@ -160,11 +160,28 @@ O conteúdo do relatório que estava em Word está em [docs/M2.md](docs/M2.md), 
 | docs/M2.md | Texto e figura da entrega M2 |
 | tests/test_pipeline.py | Separação dos dados e fluxo de upload |
 
+## Avaliação final (teste reservado)
+
+Após congelar o modelo e os hiperparâmetros, avaliamos os modelos salvos, sem novo ajuste, nas 250 imagens reservadas de 30 restaurantes. Os resultados referem-se à versão Python, sem quantização.
+
+| Método | MAE teste (US$ ± DP bootstrap) | R² |
+| --- | ---: | ---: |
+| Média do treino | 4.62 ± 0.62 | -0.007 |
+| Mediana do treino | 4.80 ± 0.82 | -0.267 |
+| Ridge visual | 4.27 ± 0.42 | 0.081 |
+| ResNet-18 + Ridge log | **4.05 ± 0.41** | **0.207** |
+
+A redução observada foi de 5,3% em relação ao Ridge visual (0,22 ± 0,35 USD) e 12,4% em relação à média do treino (0,57 ± 0,68 USD). Os intervalos bootstrap pareados de 95% para as diferenças foram [-0,37; 1,02] e [-0,89; 1,60] USD, respectivamente; ambos incluem zero. Assim, o resultado favorece a ResNet descritivamente, sem demonstrar superioridade estatística. O bootstrap reamostra restaurantes inteiros (10.000 réplicas, semente 2026); não representa repetição do treinamento.
+
+Resultado auditável: [results/final_test.json](results/final_test.json). Script: [src/evaluate_final_test.py](src/evaluate_final_test.py). O script não sobrescreve resultados existentes; não reutilize o teste para escolher modelos. Os registros M2 e de seleção anteriores preservam o estado histórico em que o teste ainda não havia sido consultado.
+
+**Contribuições:** João Vitor R. Almeida e Leonardo M. C. Prado participaram conjuntamente de todas as etapas do projeto.
+
 ## Limitações
 
 Preço depende de porção, quantidade, restaurante, localização e contexto comercial. Uma foto isolada pode não conter essas informações. A base inclui bebidas, acompanhamentos e combos; não representa somente pratos individuais. Produtos visualmente semelhantes podem ter preços diferentes.
 
-A melhoria é preliminar. Ainda não foi calculado erro no teste final, nem demonstrada generalização para cardápios brasileiros ou fotos arbitrárias. A rede não foi treinada para rejeitar imagens fora do domínio.
+A melhoria é preliminar. O teste final foi avaliado em 250 imagens de 30 restaurantes inéditos, mas não foi demonstrada generalização para cardápios brasileiros ou fotos arbitrárias. A rede não foi treinada para rejeitar imagens fora do domínio.
 
 ## Verificação
 
